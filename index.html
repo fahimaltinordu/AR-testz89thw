@@ -10,6 +10,7 @@
 
     <body style="margin: 0; overflow: hidden;">
         <a-scene
+            vr-mode-ui="enabled: false"
             embedded
             loading-screen="enabled: false;"
             arjs="sourceType: webcam; debugUIEnabled: false;"
@@ -33,7 +34,7 @@
                     gps-entity-place="latitude: 41.045011; longitude: 28.951692;"
                 ></a-image>
 
-            <a-camera gps-camera rotation-reader></a-camera>
+                <a-camera id='camera1' look-controls-enabled='false' arjs-look-controls='smoothingFactor: 0.1' gps-camera='gpsMinDistance: 5' rotation-reader> </a-camera>
         </a-scene>
     </body>
 </html>
