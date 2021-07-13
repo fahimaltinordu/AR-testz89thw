@@ -16,28 +16,31 @@
             arjs="sourceType: webcam; debugUIEnabled: false;"
         >
                 <a-image
-                    src="assets/asset.png"
+                    src="assets/scene.gltf"
                     look-at="[gps-camera]"
                     scale="0.5 0.5 0.5"
-                    rotation: "0 180 0"
+                    rotation= "0 180 0"
                     gps-entity-place="latitude: 41.045088; longitude: 28.951821;"
+                    animation-mixer
                 ></a-image>
                 <a-image
-                    src="assets/asset.png"
+                    src="assets/scene.gltf"
                     look-at="[gps-camera]"
                     scale="0.5 0.5 0.5"
-                    rotation: "0 180 0"
+                    rotation= "0 180 0"
                     gps-entity-place="latitude: 41.04506; longitude: 28.951886;"
+                    animation-mixer
                 ></a-image>
                 <a-image
-                    src="assets/asset.png"
+                    src="assets/scene.gltf"
                     look-at="[gps-camera]"
                     scale="0.5 0.5 0.5"
-                    rotation: "0 180 0"
+                    rotation= "0 180 0"
                     gps-entity-place="latitude: 41.045011; longitude: 28.951692;"
+                    animation-mixer
                 ></a-image>
 
-                <a-camera id='camera1' look-controls-enabled='false' arjs-look-controls='smoothingFactor: 0.1' gps-camera='gpsMinDistance: 5' rotation-reader> </a-camera>
+                <a-camera id='camera1' look-controls-enabled='false' arjs-look-controls='smoothingFactor: 0.1' gps-camera='minDistance: 5' rotation-reader> </a-camera>
         </a-scene>
     </body>
 </html>
