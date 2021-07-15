@@ -6,39 +6,44 @@
         <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
         <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
         <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-        <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
     </head>
 
     <body style="margin: 0; overflow: hidden;">
         <a-scene
-            renderer="logarithmicDepthBuffer: true;"
+            vr-mode-ui="enabled: false"
             embedded
             loading-screen="enabled: false;"
             arjs="sourceType: webcam; debugUIEnabled: false;"
         >
-            <a-assets>
-                <a-asset-item
-                    id="animated-asset"
-                    src="assets/asset.gltf"
-                ></a-asset-item>
-            </a-assets>
-
-                <a-entity
+                <a-image
+                    src="assets/logo.png"
                     look-at="[gps-camera]"
-                    animation-mixer="loop: repeat"
-                    gltf-model="#animated-asset"
-                    scale="0.01 0.01 0.01"
-                    gps-entity-place="latitude: 41.045031; longitude: 28.95173;"
-                ></a-entity>
-                <a-entity
+                    scale="0.5 0.5 0.5"
+                    rotation= "0 180 0"
+                    gps-entity-place="latitude: 41.045088; longitude: 28.951821;"
+                    position="0 20 0"
+                    animation-mixer
+                ></a-image>
+                <a-image
+                    src="assets/logo.png"
                     look-at="[gps-camera]"
-                    animation-mixer="loop: repeat"
-                    gltf-model="#animated-asset"
-                    scale="0.01 0.01 0.01"
-                    gps-entity-place="latitude: 41.045092; longitude: 28.951827;"
-                ></a-entity>
+                    scale="0.5 0.5 0.5"
+                    rotation= "0 180 0"
+                    gps-entity-place="latitude: 41.04506; longitude: 28.951886;"
+                    position="0 20 0"
+                    animation-mixer
+                ></a-image>
+                <a-image
+                    src="assets/logo.png"
+                    look-at="[gps-camera]"
+                    scale="0.5 0.5 0.5"
+                    rotation= "0 180 0"
+                    gps-entity-place="latitude: 41.045011; longitude: 28.951692;"
+                    position="0 20 0"
+                    animation-mixer
+                ></a-image>
 
-            <a-camera gps-camera rotation-reader></a-camera>
+                <a-camera id='camera1' look-controls-enabled='false' arjs-look-controls='smoothingFactor: 0.1' gps-camera='minDistance: 5' rotation-reader> </a-camera>
         </a-scene>
     </body>
 </html>
