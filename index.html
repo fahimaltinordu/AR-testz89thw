@@ -1,49 +1,76 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-        <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-    </head>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>GeoAR.js demo</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+  </head>
 
-    <body style="margin: 0; overflow: hidden;">
-        <a-scene
-            vr-mode-ui="enabled: false"
-            embedded
-            loading-screen="enabled: false;"
-            arjs="sourceType: webcam; debugUIEnabled: false;"
-        >
-                <a-image
-                    src="assets/logo.png"
-                    look-at="[gps-camera]"
-                    scale="0.5 0.5 0.5"
-                    rotation= "0 180 0"
-                    gps-entity-place="latitude: 41.045088; longitude: 28.951821;"
-                    position="0 5 0"
-                    animation-mixer
-                ></a-image>
-                <a-image
-                    src="assets/logo.png"
-                    look-at="[gps-camera]"
-                    scale="0.5 0.5 0.5"
-                    rotation= "0 180 0"
-                    gps-entity-place="latitude: 41.04506; longitude: 28.951886;"
-                    position="0 5 0"
-                    animation-mixer
-                ></a-image>
-                <a-image
-                    src="assets/logo.png"
-                    look-at="[gps-camera]"
-                    scale="0.5 0.5 0.5"
-                    rotation= "0 180 0"
-                    gps-entity-place="latitude: 41.045011; longitude: 28.951692;"
-                    position="0 5 0"
-                    animation-mixer
-                ></a-image>
+  <body style="margin: 0; overflow: hidden;">
+    <a-scene
+      vr-mode-ui="enabled: false"
+      embedded
+      arjs="sourceType: webcam; debugUIEnabled: false;"
+    >
+      <a-text
+        id="texto1"
+        value="Predio verde"
+        look-at="[gps-camera]"
+        scale="1 1 1"
+        gps-entity-place="latitude: 41.04506; longitude: 28.951886;"
+        position="0 0 0"
+      ></a-text>
+      <a-box
+        look-at="[gps-camera]"
+        scale="1 1 1"
+        color="tomato"
+        gps-entity-place="latitude: 41.04506; longitude: 28.951886;"
+        position="0 30 0"
+      ></a-box>
+      
+      <a-image src: width height></a-image>
 
-                <a-camera id='camera1' look-controls-enabled='false' arjs-look-controls='smoothingFactor: 0.1' gps-camera='minDistance: 5' rotation-reader> </a-camera>
-        </a-scene>
-    </body>
+      <a-text
+        id="texto2"
+        value="Predio marrom"
+        look-at="[gps-camera]"
+        scale="1 1 1"
+        gps-entity-place="latitude: 41.045011; longitude: 28.951692;"
+        position="0 30 0"
+      ></a-text>
+      <a-box
+        look-at="[gps-camera]"
+        scale="1 1 1"
+        color="tomato"
+        gps-entity-place="latitude: 41.045011; longitude: 28.951692;"
+        position="0 30 0"
+      ></a-box>
+
+      <a-text
+        id="texto3"
+        value="Predio amarelo"
+        look-at="[gps-camera]"
+        scale="1 1 1"
+        gps-entity-place="latitude: 41.045088; longitude: 28.951821;"
+      ></a-text>
+      <a-box
+        look-at="[gps-camera]"
+        scale="1 1 1"
+        color="tomato"
+        gps-entity-place="latitude: 41.045088; longitude: 28.951821;"
+      ></a-box>
+
+      <a-camera
+        id="xcamera"
+        look-controls-enabled="false"
+        arjs-look-controls="smoothingFactor: 0.1"
+        gps-camera="gpsMinDistance: 1"
+        rotation-reader
+      >
+      </a-camera>
+    </a-scene>
+  </body>
 </html>
