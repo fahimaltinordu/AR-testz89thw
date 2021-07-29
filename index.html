@@ -9,13 +9,6 @@
     <script src='js/aframe-ar-nft.js'></script>
 </head>
 
-<!-- <script>
-
-    const distanceMsg = document.querySelector('[gps-entity-place]').getAttribute('distanceMsg');
-    
-    console.log(distanceMsg);   // "890 meters"
-
-</script> -->
 
 <body style='margin: 0; overflow: hidden;'>
     <a-scene
@@ -35,26 +28,18 @@
 
         <!-- ~ 0m far -->
         <a-image look-at="[gps-camera]" src="place.png" gps-entity-place="latitude: 41.045027; longitude: 28.951733;" animation-mixer
-            ></a-image>
+        ></a-image>
 
-        <!-- using gpsMinDistance: 5 => update GPS only if user moves by 5 meters or more => avoid shaking for near objects -->
-        <!-- using accelerationToMove: 1.0 => 'smooth' inertial sensors precision precision in order to avoid distant places shaking -->
         <a-camera
             look-controls-enabled="false" 
             arjs-look-controls="smoothingFactor: 0.1"
             rotation-reader
-            gps-camera="gpsMinDistance: 5;"
+            gps-projected-camera="gpsMinDistance: 5;"
             far="100"
             near="0.1"
             fov="80"
         >
 		</a-camera>
-
-        <!-- <a-text
-            value= distanceMsg
-            look-at="[gps-camera]"
-            scale="20 20 20"
-        ></a-text> -->
 
 	</a-scene>
 </body>
