@@ -9,21 +9,33 @@
     <script src='js/aframe-ar-nft.js'></script>
 </head>
 
+<script>
+    AFRAME.registerComponent('clickhandler', {
+        init: function() {
+            this.el.addEventListener('click', () => {
+                alert('Clicked!')
+            });
+    }});
+</script>
+
 <body style='margin: 0; overflow: hidden;'>
     <a-scene
+        loading-screen="enabled: false;"
+        cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;'
+        raycaster="objects: [clickhandler];"
         vr-mode-ui="enabled: false"
 		embedded
 		arjs='sourceType: webcam; debugUIEnabled: false;'>
 
         <!-- ~ 40m far -->
-        <a-box material="color: red;" scale="5 5 5" gps-entity-place="latitude: 41.045177; longitude: 28.951953;"></a-box> 
+        <a-box clickhandler look-at="[gps-camera]" material="color: red;" scale="5 5 5" gps-entity-place="latitude: 41.045177; longitude: 28.951953;"></a-box> 
 
         <!-- ~ 20m far -->
-        <a-image src="place.png" gps-entity-place="latitude: 41.044995; longitude: 28.951664;"
+        <a-image clickhandler look-at="[gps-camera]" src="place.png" gps-entity-place="latitude: 41.044995; longitude: 28.951664;"
         ></a-image> 
 
         <!-- ~ 0m far -->
-        <a-image src="place.png" gps-entity-place="latitude: 41.045027; longitude: 28.951733;"
+        <a-image clickhandler look-at="[gps-camera]" src="place.png" gps-entity-place="latitude: 41.045027; longitude: 28.951733;"
             ></a-image>
 
         <!-- using gpsMinDistance: 5 => update GPS only if user moves by 5 meters or more => avoid shaking for near objects -->
