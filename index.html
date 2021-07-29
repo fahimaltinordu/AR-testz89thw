@@ -4,61 +4,57 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>GeoAR.js demo</title>
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
     <script src='js/aframe-ar-nft.js'></script>
 </head>
 
-<script>
+<!-- <script>
 
     const distanceMsg = document.querySelector('[gps-entity-place]').getAttribute('distanceMsg');
     
     console.log(distanceMsg);   // "890 meters"
 
-    AFRAME.registerComponent('clickhandler', {
-        init: function() {
-            this.el.addEventListener('click', () => {
-                alert('Clicked!')
-            });
-    }});
-</script>
+</script> -->
 
 <body style='margin: 0; overflow: hidden;'>
     <a-scene
         loading-screen="enabled: false;"
-        cursor='rayOrigin: mouse; fuse: true; fuseTimeout: 0;'
-        raycaster="objects: [clickhandler];"
         vr-mode-ui="enabled: false"
 		embedded
 		arjs='sourceType: webcam; debugUIEnabled: false;'>
 
         <!-- ~ 40m far -->
-        <a-box clickhandler look-at="[gps-camera]" material="color: red;" scale="5 5 5" gps-entity-place="latitude: 41.045177; longitude: 28.951953;" animation-mixer></a-box> 
+        <a-box look-at="[gps-camera]" material="color: green;" scale="5 5 5" gps-entity-place="latitude: 41.045177; longitude: 28.951953;" animation-mixer></a-box>
+        
+        <a-box look-at="[gps-camera]" material="color: blue;" scale="5 5 5" gps-entity-place="latitude: 41.044959; longitude: 28.951832;" animation-mixer></a-box>
 
         <!-- ~ 20m far -->
-        <a-image clickhandler look-at="[gps-camera]" src="place.png" gps-entity-place="latitude: 41.044995; longitude: 28.951664;" animation-mixer
+        <a-image look-at="[gps-camera]" src="place.png" gps-entity-place="latitude: 41.044995; longitude: 28.951664;" animation-mixer
         ></a-image> 
 
         <!-- ~ 0m far -->
-        <a-image clickhandler look-at="[gps-camera]" src="place.png" gps-entity-place="latitude: 41.045027; longitude: 28.951733;" animation-mixer
+        <a-image look-at="[gps-camera]" src="place.png" gps-entity-place="latitude: 41.045027; longitude: 28.951733;" animation-mixer
             ></a-image>
 
         <!-- using gpsMinDistance: 5 => update GPS only if user moves by 5 meters or more => avoid shaking for near objects -->
         <!-- using accelerationToMove: 1.0 => 'smooth' inertial sensors precision precision in order to avoid distant places shaking -->
         <a-camera
-            look-controls-enabled='false' 
-            arjs-look-controls='smoothingFactor: 0.1'
+            look-controls-enabled="false" 
+            arjs-look-controls="smoothingFactor: 0.1"
             rotation-reader
-            gps-camera="simulateLatitude: 41.045027; simulateLongitude: 28.951733; gpsMinDistance: 5;"
-            far="1000"
+            gps-camera="gpsMinDistance: 5;"
+            far="100"
+            near="0.1"
+            fov="80"
         >
 		</a-camera>
 
-        <a-text
+        <!-- <a-text
             value= distanceMsg
             look-at="[gps-camera]"
             scale="20 20 20"
-        ></a-text>
+        ></a-text> -->
 
 	</a-scene>
 </body>
