@@ -79,7 +79,7 @@
             gps-entity-place="latitude: 41.043182; longitude: 28.948421;" 
         ></a-box>
         <a-text
-            id="text"
+            id="text1"
             value=""
             look-at="[gps-camera]"
             scale="2 2 2"
@@ -92,7 +92,7 @@
             gps-entity-place="latitude: 41.044959; longitude: 28.951832;" 
         ></a-box>
         <a-text
-            id="text"
+            id="text2"
             value=""
             look-at="[gps-camera]"
             scale="2 2 2"
@@ -105,7 +105,7 @@
             gps-entity-place="latitude: 41.043992; longitude: 28.952779;" 
         ></a-box>
         <a-text
-            id="text"
+            id="text3"
             value=""
             look-at="[gps-camera]"
             scale="2 2 2"
@@ -126,6 +126,24 @@
             const distanceMsg = document.querySelector('[gps-entity-place]').getAttribute('distanceMsg');
           const text = document.getElementById('text');
           text.addEventListener('gps-entity-place-update-position', (event) => {
+            document.getElementById('debug').textContent = `あと${event.detail.distance}m`;
+            text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
+          });
+
+          const text1 = document.getElementById('text1');
+          text1.addEventListener('gps-entity-place-update-position', (event) => {
+            document.getElementById('debug').textContent = `あと${event.detail.distance}m`;
+            text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
+          });
+
+          const text2 = document.getElementById('text1');
+          text2.addEventListener('gps-entity-place-update-position', (event) => {
+            document.getElementById('debug').textContent = `あと${event.detail.distance}m`;
+            text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
+          });
+
+          const text3 = document.getElementById('text1');
+          text3.addEventListener('gps-entity-place-update-position', (event) => {
             document.getElementById('debug').textContent = `あと${event.detail.distance}m`;
             text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
           });
