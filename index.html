@@ -24,19 +24,22 @@
           display: block;
           width:100%;
           color:red;
-          height:15px;
+          height:20px;
         }
         #currentlocation {
           position: fixed;
           z-index: 10000;
           background-color: rgb(180, 180, 180);
           padding: 10px;
-          top: 16px;
+          top: 20px;
           left: 0;
-          display: block;
           width:100%;
-          height:15px;
+          height:20px;
           color:rgb(0, 0, 0);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 13px;
         }
     </style>
 </head>
@@ -106,7 +109,7 @@
     </script>
     <script>
         window.onload = () => { navigator.geolocation.getCurrentPosition((position) => {
-          document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`;
+          document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)}; longitude: ${position.coords.longitude.toFixed(6)}`;
           
           console.log(`latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`);
         });
