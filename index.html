@@ -131,14 +131,13 @@
           });
         });
     </script>
-    
+
     <script>
         //get current location (onload)
         window.onload = () => {
             if( navigator.geolocation ) {
                     // Call getCurrentPosition with success and failure callbacks
                     navigator.geolocation.getCurrentPosition( success, fail );
-                    navigator.geolocation.watchPosition( successCall, errorCall );
             }
             else {
                 alert("Sorry, your browser does not support geolocation services.");
@@ -147,17 +146,10 @@
             function success (position) {
                 document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)}; longitude: ${position.coords.longitude.toFixed(6)}`;
             }
-            function successCall (position) {
-                document.getElementById('debug').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)}; longitude: ${position.coords.longitude.toFixed(6)}`;
-            }
             
             function fail () {
                 document.getElementById('currentlocation').innerHTML=`Unable to get your location : User denied Geolocation`;
             }
-            function errorCall () {
-                document.getElementById('debug').innerHTML=`Unable to get your location : User denied Geolocation`;
-            }
-
         }
 
       </script>
