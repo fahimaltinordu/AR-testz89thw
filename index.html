@@ -44,9 +44,7 @@
           justify-content: center;
           font-size: 13px;
         }
-        #text {
-            color:blue;
-        }
+
     </style>
 </head>
 
@@ -71,6 +69,9 @@
         </a-box>
 
         <a-text
+            color="red"
+            side="front"
+            baseline="top"
             id="text"
             value=""
             look-at="[gps-camera]"
@@ -122,10 +123,12 @@
         <a-camera
             gps-camera="minDistance:1; maxDistance:100"
             rotation-reader
-            look-controls-enabled="false" 
-            arjs-look-controls="smoothingFactor: 0.1"             
+                         
         ></a-camera>
-        <!-- gps-camera="minDistance:1; maxDistance:100" -->
+        <!-- gps-camera="minDistance:1; maxDistance:100" 
+            look-controls-enabled="false" 
+            arjs-look-controls="smoothingFactor: 0.1"
+        -->
     </a-scene>
 
     <script>
