@@ -13,7 +13,7 @@
         window.addEventListener('load', () => {
             const distanceMsg = document.querySelector('[gps-entity-place]').getAttribute('distanceMsg');
           const text = document.getElementById('text');
-          text.addEventListener('gps-entity-place-update-positon', (event) => {
+          text.addEventListener('gps-entity-place-update-position', (event) => {
             document.getElementById('debug').textContent = `あと${event.detail.distance}m`;
             text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
           });
