@@ -115,11 +115,11 @@
         
 
         <a-camera
-            gps-camera
+            gps-camera="minDistance:1; maxDistance:100"
             rotation-reader            
         ></a-camera>
-<!-- gps-camera="minDistance:1; maxDistance:100" -->
-	</a-scene>
+
+    </a-scene>
 
     <script>
         window.addEventListener('load', () => {
