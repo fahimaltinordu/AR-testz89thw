@@ -108,12 +108,31 @@
         });
     </script>
     <script>
-        window.onload = () => { navigator.geolocation.getCurrentPosition((position) => {
-          document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)}; longitude: ${position.coords.longitude.toFixed(6)}`;
+        window.onload = () => {
+            if( navigator.geolocation ) {
+                    // Call getCurrentPosition with success and failure callbacks
+                    navigator.geolocation.getCurrentPosition( success, fail );
+            }
+            else {
+                alert("Sorry, your browser does not support geolocation services.");
+            }
+
+            function success(position) {
+                // GeoPosition Object
+                document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)}; longitude: ${position.coords.longitude.toFixed(6)}`;
+            }
+            
+            function fail() {
+                document.getElementById('currentlocation').innerHTML=`Unable to get your location : User denied Geolocation`;
+            }
+
+        }
+    //     window.onload = () => { navigator.geolocation.getCurrentPosition((position) => {
+    //       document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)}; longitude: ${position.coords.longitude.toFixed(6)}`;
           
-          console.log(`latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`);
-        });
-       }
+    //       console.log(`latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`);
+    //     });
+    //    }
       </script>
 </body>
 
