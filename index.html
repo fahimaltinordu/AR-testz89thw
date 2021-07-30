@@ -154,7 +154,7 @@
           text.addEventListener('gps-entity-place-update-position', (event) => {
             document.getElementById('debug').textContent = `${event.detail.distance.toFixed(2)} meters far from you`;
             text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
-            dstnc.innerHTML = `${text.getAttribute('distanceMsg')} left`;
+            dstnc.innerHTML = `~ ${text.getAttribute('distanceMsg')} left`;
           });
 
         });
