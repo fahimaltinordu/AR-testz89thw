@@ -21,10 +21,13 @@
           padding: 10px;
           top: 0;
           left: 0;
-          display: block;
           width:100%;
           color:red;
           height:20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 13px;
         }
         #currentlocation {
           position: fixed;
@@ -46,50 +49,70 @@
 
 
 <body style='margin: 0; overflow: hidden;'>
+
     <div id="debug"></div>
     <div id="currentlocation"></div>
+
     <a-scene
         loading-screen="enabled: false;"
         vr-mode-ui="enabled: false"
 		embedded
 		arjs='sourceType: webcam; debugUIEnabled: false;'>
 
-
-        <!-- ~ 40m far -->
-        <!-- <a-box position="0 1.6 0" look-at="[gps-camera]" material="color: green;" scale="1 1 1" gps-entity-place="latitude: 41.045177; longitude: 28.951953;" ></a-box> -->
         
         <a-box 
-            material="color: orange;" 
-            scale="0.1 0.1 0.1" 
-            gps-entity-place="latitude: 41.044959; longitude: 28.951832;" 
+            material="color: green;" 
+            scale="1 1 1" 
+            gps-entity-place="latitude: 41.042907; longitude: 28.948163;" 
         ></a-box>
-
-        <a-box 
-            material="color: red;" 
-            scale="0.5 0.5 0.5" 
-            gps-entity-place="latitude: 41.043992; longitude: 28.952779;" 
-        ></a-box>
-
         <a-text
             id="text"
             value=""
             look-at="[gps-camera]"
-            scale="3 3 3"
+            scale="2 2 2"
+            gps-entity-place="latitude: 41.042907; longitude: 28.948163;"
+        ></a-text>
+
+        <a-box 
+            material="color: blue;" 
+            scale="1 1 1" 
+            gps-entity-place="latitude: 41.043182; longitude: 28.948421;" 
+        ></a-box>
+        <a-text
+            id="text"
+            value=""
+            look-at="[gps-camera]"
+            scale="2 2 2"
+            gps-entity-place="latitude: 41.043182; longitude: 28.948421;"
+        ></a-text>
+
+        <a-box 
+            material="color: orange;" 
+            scale="1 1 1" 
+            gps-entity-place="latitude: 41.044959; longitude: 28.951832;" 
+        ></a-box>
+        <a-text
+            id="text"
+            value=""
+            look-at="[gps-camera]"
+            scale="2 2 2"
             gps-entity-place="latitude: 41.044959; longitude: 28.951832;"
         ></a-text>
 
-        <!-- ~ 20m far -->
-        <!-- <a-image look-at="[gps-camera]" src="place.png" gps-entity-place="latitude: 41.044995; longitude: 28.951664;" ></a-image>  -->
-
-        <!-- ~ 0m far -->
-        <!-- <a-image look-at="[gps-camera]" src="place.png" gps-entity-place="latitude: 41.045027; longitude: 28.951733;" ></a-image> -->
-
-        <!-- <a-text
-            value="FahimAltınordu"
+        <a-box 
+            material="color: red;" 
+            scale="1 1 1" 
+            gps-entity-place="latitude: 41.043992; longitude: 28.952779;" 
+        ></a-box>
+        <a-text
+            id="text"
+            value=""
             look-at="[gps-camera]"
-            scale="1 1 1"
-            gps-entity-place="latitude: 41.045027; longitude: 28.951733;"
-        ></a-text> -->
+            scale="2 2 2"
+            gps-entity-place="latitude: 41.043992; longitude: 28.952779;"
+        ></a-text>
+
+        
 
         <a-camera
             gps-camera
@@ -97,6 +120,7 @@
         ></a-camera>
 <!-- gps-camera="minDistance:1; maxDistance:100" -->
 	</a-scene>
+
     <script>
         window.addEventListener('load', () => {
             const distanceMsg = document.querySelector('[gps-entity-place]').getAttribute('distanceMsg');
@@ -107,32 +131,35 @@
           });
         });
     </script>
+    
     <script>
+        //get current location (onload)
         window.onload = () => {
             if( navigator.geolocation ) {
                     // Call getCurrentPosition with success and failure callbacks
                     navigator.geolocation.getCurrentPosition( success, fail );
+                    navigator.geolocation.watchPosition( successCall, errorCall );
             }
             else {
                 alert("Sorry, your browser does not support geolocation services.");
             }
 
-            function success(position) {
-                // GeoPosition Object
+            function success (position) {
                 document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)}; longitude: ${position.coords.longitude.toFixed(6)}`;
             }
+            function successCall (position) {
+                document.getElementById('debug').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)}; longitude: ${position.coords.longitude.toFixed(6)}`;
+            }
             
-            function fail() {
+            function fail () {
                 document.getElementById('currentlocation').innerHTML=`Unable to get your location : User denied Geolocation`;
+            }
+            function errorCall () {
+                document.getElementById('debug').innerHTML=`Unable to get your location : User denied Geolocation`;
             }
 
         }
-    //     window.onload = () => { navigator.geolocation.getCurrentPosition((position) => {
-    //       document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)}; longitude: ${position.coords.longitude.toFixed(6)}`;
-          
-    //       console.log(`latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`);
-    //     });
-    //    }
+
       </script>
 </body>
 
