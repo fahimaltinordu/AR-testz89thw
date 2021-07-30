@@ -9,16 +9,7 @@
     <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
     <!-- <script src='js/aframe-ar-nft.js'></script> -->
-    <script>
-        window.addEventListener('load', () => {
-            const distanceMsg = document.querySelector('[gps-entity-place]').getAttribute('distanceMsg');
-          const text = document.getElementById('text');
-          text.addEventListener('gps-entity-place-update-position', (event) => {
-            document.getElementById('debug').textContent = `あと${event.detail.distance}m`;
-            text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
-          });
-        });
-      </script>
+    
     <style>
         #debug {
           position: fixed;
@@ -86,7 +77,16 @@
         ></a-camera>
 <!-- gps-camera="minDistance:1; maxDistance:100" -->
 	</a-scene>
-    
+    <script>
+        window.addEventListener('load', () => {
+            const distanceMsg = document.querySelector('[gps-entity-place]').getAttribute('distanceMsg');
+          const text = document.getElementById('text');
+          text.addEventListener('gps-entity-place-update-position', (event) => {
+            document.getElementById('debug').textContent = `あと${event.detail.distance}m`;
+            text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
+          });
+        });
+    </script>
 </body>
 
 <!-- look-controls-enabled="false" 
