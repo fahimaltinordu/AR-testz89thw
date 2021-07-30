@@ -18,27 +18,33 @@
 		embedded
 		arjs='sourceType: webcam; debugUIEnabled: false;'>
 
+        <a-text
+            value="This content will always face you."
+            look-at="[gps-camera]"
+            scale="50 50 50"
+            gps-entity-place="latitude: 41.045177; longitude: 28.951953;"
+        ></a-text>
+
         <!-- ~ 40m far -->
-        <a-box position="0 1.6 0" look-at="[gps-camera]" material="color: green;" scale="1 1 1" gps-entity-place="latitude: 41.045177; longitude: 28.951953;" ></a-box>
+        <!-- <a-box position="0 1.6 0" look-at="[gps-camera]" material="color: green;" scale="1 1 1" gps-entity-place="latitude: 41.045177; longitude: 28.951953;" ></a-box> -->
         
-        <a-box look-at="[gps-camera]" material="color: blue;" scale="1 1 1" gps-entity-place="latitude: 41.044959; longitude: 28.951832;" ></a-box>
+        <!-- <a-box look-at="[gps-camera]" material="color: blue;" scale="1 1 1" gps-entity-place="latitude: 41.044959; longitude: 28.951832;" ></a-box> -->
 
         <!-- ~ 20m far -->
-        <a-image look-at="[gps-camera]" src="place.png" gps-entity-place="latitude: 41.044995; longitude: 28.951664;" ></a-image> 
+        <!-- <a-image look-at="[gps-camera]" src="place.png" gps-entity-place="latitude: 41.044995; longitude: 28.951664;" ></a-image>  -->
 
         <!-- ~ 0m far -->
-        <a-image look-at="[gps-camera]" src="place.png" gps-entity-place="latitude: 41.045027; longitude: 28.951733;" ></a-image>
+        <!-- <a-image look-at="[gps-camera]" src="place.png" gps-entity-place="latitude: 41.045027; longitude: 28.951733;" ></a-image> -->
 
-        <a-text
+        <!-- <a-text
             value="FahimAltınordu"
             look-at="[gps-camera]"
             scale="1 1 1"
             gps-entity-place="latitude: 41.045027; longitude: 28.951733;"
-        ></a-text>
+        ></a-text> -->
 
         <a-camera
-            look-controls-enabled="false" 
-            arjs-look-controls="smoothingFactor: 0.1"
+            
             rotation-reader
             gps-camera
             
@@ -48,3 +54,5 @@
 	</a-scene>
 </body>
 
+<!-- look-controls-enabled="false" 
+            arjs-look-controls="smoothingFactor: 0.1" -->
