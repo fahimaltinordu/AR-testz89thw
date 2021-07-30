@@ -21,6 +21,18 @@
           display: block;
           width:100%;
           color:red;
+          height:10px;
+        }
+        #currentlocation {
+          position: fixed;
+          z-index: 10000;
+          background-color: rgb(180, 180, 180);
+          padding: 10px;
+          top: 11px;
+          left: 0;
+          display: block;
+          width:100%;
+          color:rgb(0, 0, 0);
         }
     </style>
 </head>
@@ -28,6 +40,7 @@
 
 <body style='margin: 0; overflow: hidden;'>
     <div id="debug"></div>
+    <div id="currentlocation"></div>
     <a-scene
         loading-screen="enabled: false;"
         vr-mode-ui="enabled: false"
@@ -89,7 +102,8 @@
     </script>
     <script>
         window.onload = () => { navigator.geolocation.getCurrentPosition((position) => {
-          document.querySelector('#text').setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`)
+          document.getElementById('currentlocation').setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`)
+          console.log(`latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`);
         });
        }
       </script>
