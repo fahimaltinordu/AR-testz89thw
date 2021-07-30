@@ -28,7 +28,7 @@
           z-index: 10000;
           background-color: rgb(180, 180, 180);
           padding: 10px;
-          top: 11px;
+          top: 16px;
           left: 0;
           display: block;
           width:100%;
@@ -103,8 +103,9 @@
     </script>
     <script>
         window.onload = () => { navigator.geolocation.getCurrentPosition((position) => {
-          document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`
-          console.log(`latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`);
+          document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`;
+          
+          console.log(`latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude}`);
         });
        }
       </script>
