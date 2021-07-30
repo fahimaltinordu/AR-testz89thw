@@ -45,9 +45,7 @@
           font-size: 13px;
         }
         #text {
-            position: relative;
-            top:-5px;
-            z-index: 99999999;
+            color:blue;
         }
     </style>
 </head>
@@ -69,14 +67,17 @@
             material="color: green;" 
             scale="1 1 1" 
             gps-entity-place="latitude: 41.044862; longitude: 28.952108;" 
-        ></a-box>
-        <a-text
+        >
+        <a-entity id="text" text="value: test;"></a-entity>
+        </a-box>
+
+        <!-- <a-text
             id="text"
             value=""
             look-at="[gps-camera]"
             scale="2 2 2"
             gps-entity-place="latitude: 41.044862; longitude: 28.952108;"
-        ></a-text>
+        ></a-text> -->
 
         <!-- <a-box 
             material="color: blue;" 
@@ -128,11 +129,12 @@
 
     <script>
         window.addEventListener('load', () => {
-            const distanceMsg = document.querySelector('[gps-entity-place]').getAttribute('distanceMsg');
+          const distanceMsg = document.querySelector('[gps-entity-place]').getAttribute('distanceMsg');
           const text = document.getElementById('text');
+
           text.addEventListener('gps-entity-place-update-position', (event) => {
-            document.getElementById('debug').textContent = `あと${event.detail.distance}m`;
-            text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
+            document.getElementById('debug').textContent = `${event.detail.distance.toFixed(2)} meters far from you`;
+            text.setAttribute('text', `value:${text.getAttribute('distanceMsg')} left`);
           });
 
         });
