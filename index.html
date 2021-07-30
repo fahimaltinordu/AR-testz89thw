@@ -29,6 +29,21 @@
           justify-content: center;
           font-size: 13px;
         }
+        #distance {
+          position: fixed;
+          z-index: 10000;
+          background-color: #fff;
+          padding: 10px;
+          top: 20px;
+          left: 0;
+          width:100%;
+          color:red;
+          height:20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 13px;
+        }
         #currentlocation {
           position: fixed;
           z-index: 10000;
@@ -52,6 +67,7 @@
 <body style='margin: 0; overflow: hidden;'>
 
     <div id="debug"></div>
+    <div id="distance"></div>
     <div id="currentlocation"></div>
 
     <a-scene
@@ -70,8 +86,6 @@
 
         <a-text
             color="red"
-            side="front"
-            baseline="top"
             id="text"
             value=""
             look-at="[gps-camera]"
@@ -135,10 +149,12 @@
         window.addEventListener('load', () => {
           const distanceMsg = document.querySelector('[gps-entity-place]').getAttribute('distanceMsg');
           const text = document.getElementById('text');
+          const dstnc = document.getElementById('distance');
 
           text.addEventListener('gps-entity-place-update-position', (event) => {
             document.getElementById('debug').textContent = `${event.detail.distance.toFixed(2)} meters far from you`;
             text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
+            dstnc.innerHTML = `${distanceMsg} left`;
           });
 
         });
