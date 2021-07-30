@@ -21,7 +21,7 @@
           display: block;
           width:100%;
           color:red;
-          height:10px;
+          height:15px;
         }
         #currentlocation {
           position: fixed;
@@ -32,6 +32,7 @@
           left: 0;
           display: block;
           width:100%;
+          height:15px;
           color:rgb(0, 0, 0);
         }
     </style>
@@ -102,7 +103,7 @@
     </script>
     <script>
         window.onload = () => { navigator.geolocation.getCurrentPosition((position) => {
-          document.getElementById('currentlocation').setAttribute('gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`)
+          document.getElementById('currentlocation').innerHTML='gps-entity-place', `latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`
           console.log(`latitude: ${position.coords.latitude}; longitude: ${position.coords.longitude};`);
         });
        }
