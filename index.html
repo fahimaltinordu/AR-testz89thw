@@ -68,16 +68,15 @@
             scale="1 1 1" 
             gps-entity-place="latitude: 41.044862; longitude: 28.952108;" 
         >
-        <a-entity id="text" text="value: test;"></a-entity>
         </a-box>
 
-        <!-- <a-text
+        <a-text
             id="text"
             value=""
             look-at="[gps-camera]"
             scale="2 2 2"
             gps-entity-place="latitude: 41.044862; longitude: 28.952108;"
-        ></a-text> -->
+        ></a-text>
 
         <!-- <a-box 
             material="color: blue;" 
@@ -134,7 +133,7 @@
 
           text.addEventListener('gps-entity-place-update-position', (event) => {
             document.getElementById('debug').textContent = `${event.detail.distance.toFixed(2)} meters far from you`;
-            text.setAttribute('text', `value:${text.getAttribute('distanceMsg')} left`);
+            text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
           });
 
         });
