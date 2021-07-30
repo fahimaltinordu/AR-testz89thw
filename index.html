@@ -73,7 +73,7 @@
             gps-entity-place="latitude: 41.042907; longitude: 28.948163;"
         ></a-text>
 
-        <a-box 
+        <!-- <a-box 
             material="color: blue;" 
             scale="1 1 1" 
             gps-entity-place="latitude: 41.043182; longitude: 28.948421;" 
@@ -84,7 +84,7 @@
             look-at="[gps-camera]"
             scale="2 2 2"
             gps-entity-place="latitude: 41.043182; longitude: 28.948421;"
-        ></a-text>
+        ></a-text> -->
 
         <a-box 
             material="color: orange;" 
@@ -92,14 +92,14 @@
             gps-entity-place="latitude: 41.044959; longitude: 28.951832;" 
         ></a-box>
         <a-text
-            id="text2"
+            id="text"
             value=""
             look-at="[gps-camera]"
             scale="2 2 2"
             gps-entity-place="latitude: 41.044959; longitude: 28.951832;"
         ></a-text>
 
-        <a-box 
+        <!-- <a-box 
             material="color: red;" 
             scale="1 1 1" 
             gps-entity-place="latitude: 41.043992; longitude: 28.952779;" 
@@ -110,7 +110,7 @@
             look-at="[gps-camera]"
             scale="2 2 2"
             gps-entity-place="latitude: 41.043992; longitude: 28.952779;"
-        ></a-text>
+        ></a-text> -->
 
         
 
@@ -118,7 +118,7 @@
             gps-camera="minDistance:1; maxDistance:100"
             rotation-reader            
         ></a-camera>
-
+        <!-- gps-camera="minDistance:1; maxDistance:100" -->
     </a-scene>
 
     <script>
@@ -130,23 +130,6 @@
             text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
           });
 
-          const text1 = document.getElementById('text1');
-          text1.addEventListener('gps-entity-place-update-position', (event) => {
-            document.getElementById('debug').textContent = `あと${event.detail.distance}m`;
-            text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
-          });
-
-          const text2 = document.getElementById('text1');
-          text2.addEventListener('gps-entity-place-update-position', (event) => {
-            document.getElementById('debug').textContent = `あと${event.detail.distance}m`;
-            text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
-          });
-
-          const text3 = document.getElementById('text1');
-          text3.addEventListener('gps-entity-place-update-position', (event) => {
-            document.getElementById('debug').textContent = `あと${event.detail.distance}m`;
-            text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
-          });
         });
     </script>
 
