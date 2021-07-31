@@ -98,7 +98,7 @@
             src="assets/place.png" 
             look-at="[gps-camera]"
             scale="1 1 1" 
-            gps-entity-place="latitude: 41.045145; longitude: 28.951800;"
+            gps-entity-place="latitude: 41.045141; longitude: 28.951875;"
         ></a-image>
         <a-text
             color="red"
@@ -156,47 +156,6 @@
             scale="1 1 1" 
             gps-entity-place="latitude: 41.045756; longitude: 28.953367;"
         ></a-image>
-
-
-        <!-- <a-box 
-            material="color: blue;" 
-            scale="1 1 1" 
-            gps-entity-place="latitude: 41.043182; longitude: 28.948421;" 
-        ></a-box>
-        <a-text
-            id="text1"
-            value=""
-            look-at="[gps-camera]"
-            scale="2 2 2"
-            gps-entity-place="latitude: 41.043182; longitude: 28.948421;"
-        ></a-text> -->
-
-        <!-- <a-box 
-            material="color: orange;" 
-            scale="1 1 1" 
-            gps-entity-place="latitude: 41.044959; longitude: 28.951832;" 
-        ></a-box>
-        <a-text
-            id="text"
-            value=""
-            look-at="[gps-camera]"
-            scale="2 2 2"
-            gps-entity-place="latitude: 41.044959; longitude: 28.951832;"
-        ></a-text> -->
-
-        <!-- <a-box 
-            material="color: red;" 
-            scale="1 1 1" 
-            gps-entity-place="latitude: 41.043992; longitude: 28.952779;" 
-        ></a-box>
-        <a-text
-            id="text3"
-            value=""
-            look-at="[gps-camera]"
-            scale="2 2 2"
-            gps-entity-place="latitude: 41.043992; longitude: 28.952779;"
-        ></a-text> -->
-
         
 
         <a-camera
@@ -255,7 +214,7 @@
             }
             
             function fail () {
-                document.getElementById('currentlocation').innerHTML=`Unable to get your location : User denied Geolocation`;
+                document.getElementById('currentlocation').innerHTML=`Unable to get your location / User denied Geolocation`;
             }
         }
 
