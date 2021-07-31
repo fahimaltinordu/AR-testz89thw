@@ -40,6 +40,8 @@
           width:100%;
           height:30%;
           display: block;
+          border-top-left-radius: 50%;
+          border-top-right-radius: 50%;
         }
         .mapboxgl-ctrl-bottom-right {
             display:none;
@@ -203,7 +205,6 @@
             function success (position) {
                 document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)}; longitude: ${position.coords.longitude.toFixed(6)}`;
 
-                let mapbox = document.getElementById('map');
                 // let location = position.coords.latitude + ',' + position.coords.longitude;
 
                 mapboxgl.accessToken = 'pk.eyJ1IjoiZmFoaW1hbHRpbm9yZHUiLCJhIjoiY2tycnl0NGljMzN6ODJ2cGVzNzg5eWZ2bSJ9.iEZejnMqCLmdIcCkOJcvxg';
