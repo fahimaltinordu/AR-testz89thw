@@ -8,40 +8,13 @@
     <script src="https://raw.githack.com/AR-js-org/AR.js/3.3.3/aframe/build/aframe-ar-nft.js"></script>
     <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
     
     <style>
         * {
             box-sizing: border-box;
-        }
-        /* #debug {
-          position: fixed;
-          z-index: 10000;
-          background-color: #fff;
-          padding: 10px;
-          top: 0;
-          left: 0;
-          width:100%;
-          color:red;
-          height:20px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 13px;
-        } */
-        #distance {
-          position: fixed;
-          z-index: 10000;
-          background-color: #fff;
-          padding: 10px;
-          top: 0;
-          left: 0;
-          width:100%;
-          color:red;
-          height:20px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 13px;
         }
         #currentlocation {
           position: fixed;
@@ -58,6 +31,19 @@
           justify-content: center;
           font-size: 13px;
         }
+        #map {
+          position: fixed;
+          z-index: 10000;
+          background-color: rgb(64, 235, 129);
+          bottom: 20px;
+          left: 0;
+          width:100%;
+          height:30%;
+          display: block;
+        }
+        .mapboxgl-ctrl-bottom-right {
+            display:none;
+        }
 
     </style>
 </head>
@@ -65,9 +51,8 @@
 
 <body style='margin: 0; overflow: hidden;'>
 
-    <!-- <div id="debug"></div> -->
-    <div id="distance"></div>
     <div id="currentlocation"></div>
+    <div id="map"></div>
 
     <a-scene
         loading-screen="enabled: false;"
@@ -155,19 +140,30 @@
             scale="1 1 1" 
             gps-entity-place="latitude: 41.045756; longitude: 28.953367;"
         ></a-image>
+
+        <!--hasköy-->
+        <a-image 
+            src="assets/place.png" 
+            look-at="[gps-camera]"
+            scale="1 1 1" 
+            gps-entity-place="latitude: 41.042956; longitude: 28.948382;"
+        ></a-image>
         
+        <!--hasköy2-->
+        <a-image 
+            src="assets/place.png" 
+            look-at="[gps-camera]"
+            scale="1 1 1" 
+            gps-entity-place="latitude: 41.043053; longitude: 28.948618;"
+        ></a-image>
 
         <a-camera
             gps-camera 
             maxDistance="20" 
             gpsMinDistance= "1" 
-            rotation-reader
-                         
+            rotation-reader               
         ></a-camera>
-        <!-- gps-camera="minDistance:1; maxDistance:100" 
-            look-controls-enabled="false" 
-            arjs-look-controls="smoothingFactor: 0.1"
-        -->
+
     </a-scene>
 
     <script>
@@ -177,12 +173,9 @@
           const text1 = document.getElementById('text1');
           const text2 = document.getElementById('text2');
           const text3 = document.getElementById('text3');
-          const dstnc = document.getElementById('distance');
 
           text.addEventListener('gps-entity-place-update-position', (event) => {
-            // document.getElementById('debug').textContent = `${event.detail.distance.toFixed(2)} meters far from you`;
             text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
-            dstnc.innerHTML = `~ ${text.getAttribute('distanceMsg')} left`;
           });
           text1.addEventListener('gps-entity-place-update-position', (event) => {
             text1.setAttribute('value', text1.getAttribute('distanceMsg') + ' left');
@@ -201,7 +194,6 @@
         //get current location (onload)
         window.onload = () => {
             if( navigator.geolocation ) {
-                    // Call getCurrentPosition with success and failure callbacks
                     const watchId = navigator.geolocation.watchPosition( success, fail );
             }
             else {
@@ -210,14 +202,41 @@
 
             function success (position) {
                 document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)}; longitude: ${position.coords.longitude.toFixed(6)}`;
+
+                let mapbox = document.getElementById('map');
+                // let location = position.coords.latitude + ',' + position.coords.longitude;
+
+                mapboxgl.accessToken = 'pk.eyJ1IjoiZmFoaW1hbHRpbm9yZHUiLCJhIjoiY2tycnl0NGljMzN6ODJ2cGVzNzg5eWZ2bSJ9.iEZejnMqCLmdIcCkOJcvxg';
+                var map = new mapboxgl.Map({
+                container: 'map', // container ID
+                style: 'mapbox://styles/mapbox/streets-v11', // style URL
+                center: {lon: position.coords.longitude, lat: position.coords.latitude}, // starting position [lng, lat]
+                zoom: 15 // starting zoom
+                });
+                
             }
             
-            function fail () {
-                document.getElementById('currentlocation').innerHTML=`Unable to get your location / User denied Geolocation`;
+            function fail (error) {
+                switch(error.code) {
+                    case error.PERMISSION_DENIED:
+                    document.getElementById('currentlocation').innerHTML=`User denied Geolocation`;
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                    document.getElementById('currentlocation').innerHTML=`Unable to get your location`;
+                        break;
+                    case error.TIMEOUT:
+                    document.getElementById('currentlocation').innerHTML=`Runtime error`;
+                        break;
+                    case error.UNKNOWN_ERROR:
+                    document.getElementById('currentlocation').innerHTML=`Unknown error`;
+                        break;
+                }
             }
+
         }
 
       </script>
+
 </body>
 
 <!-- look-controls-enabled="false" 
