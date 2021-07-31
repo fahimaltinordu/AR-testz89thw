@@ -14,7 +14,7 @@
         * {
             box-sizing: border-box;
         }
-        #debug {
+        /* #debug {
           position: fixed;
           z-index: 10000;
           background-color: #fff;
@@ -28,7 +28,7 @@
           align-items: center;
           justify-content: center;
           font-size: 13px;
-        }
+        } */
         #distance {
           position: fixed;
           z-index: 10000;
@@ -66,7 +66,7 @@
 
 <body style='margin: 0; overflow: hidden;'>
 
-    <div id="debug"></div>
+    <!-- <div id="debug"></div> -->
     <div id="distance"></div>
     <div id="currentlocation"></div>
 
@@ -92,6 +92,27 @@
             scale="2 2 2"
             gps-entity-place="latitude: 41.044862; longitude: 28.952108;"
         ></a-text>
+        
+        <a-image 
+            src="assets/place.png" 
+            gps-entity-place="latitude: 41.045290; longitude: 28.951934;"
+        ></a-image>
+
+        <a-image 
+            src="assets/place.png" 
+            gps-entity-place="latitude: 41.045035; longitude: 28.951719;"
+        ></a-image>
+
+        <a-image 
+            src="assets/place.png" 
+            gps-entity-place="latitude: 41.044918; longitude: 28.951805;"
+        ></a-image>
+
+        <a-image 
+            src="assets/place.png" 
+            gps-entity-place="latitude: 41.045756; longitude: 28.953367;"
+        ></a-image>
+
 
         <!-- <a-box 
             material="color: blue;" 
@@ -135,7 +156,7 @@
         
 
         <a-camera
-            gps-camera="minDistance:1; maxDistance:100"
+            gps-camera="maxDistance:30"
             rotation-reader
                          
         ></a-camera>
@@ -152,7 +173,7 @@
           const dstnc = document.getElementById('distance');
 
           text.addEventListener('gps-entity-place-update-position', (event) => {
-            document.getElementById('debug').textContent = `${event.detail.distance.toFixed(2)} meters far from you`;
+            // document.getElementById('debug').textContent = `${event.detail.distance.toFixed(2)} meters far from you`;
             text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
             dstnc.innerHTML = `~ ${text.getAttribute('distanceMsg')} left`;
           });
