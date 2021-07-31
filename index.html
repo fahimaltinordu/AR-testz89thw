@@ -9,8 +9,10 @@
     <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
 
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet">
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
+   <link rel="stylesheet" href="leaflet.css"/>
+   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
     
     <style>
         * {
@@ -31,10 +33,10 @@
           justify-content: center;
           font-size: 13px;
         }
-        #map {
+        #map-container {
           position: fixed;
           z-index: 10000;
-          background-color: rgb(64, 235, 129);
+          background-color: rgb(77, 77, 77);
           bottom: 20px;
           left: 0;
           width:100%;
@@ -42,9 +44,10 @@
           display: block;
           border-top-left-radius: 50%;
           border-top-right-radius: 50%;
+          overflow: hidden;
         }
-        .mapboxgl-ctrl-bottom-right {
-            display:none;
+        #mapid {
+            height:100%;
         }
 
     </style>
@@ -54,7 +57,9 @@
 <body style='margin: 0; overflow: hidden;'>
 
     <div id="currentlocation"></div>
-    <div id="map"></div>
+    <div id="map-container">
+        <div id="mapid"></div>
+    </div>
 
     <a-scene
         loading-screen="enabled: false;"
@@ -205,15 +210,19 @@
             function success (position) {
                 document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)}; longitude: ${position.coords.longitude.toFixed(6)}`;
 
-                // let location = position.coords.latitude + ',' + position.coords.longitude;
+                let location = position.coords.latitude + ',' + position.coords.longitude;
+                
+                var mymap = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 15);
+                var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap);
 
-                mapboxgl.accessToken = 'pk.eyJ1IjoiZmFoaW1hbHRpbm9yZHUiLCJhIjoiY2tycnl0NGljMzN6ODJ2cGVzNzg5eWZ2bSJ9.iEZejnMqCLmdIcCkOJcvxg';
-                var map = new mapboxgl.Map({
-                container: 'map', // container ID
-                style: 'mapbox://styles/mapbox/streets-v11', // style URL
-                center: {lon: position.coords.longitude, lat: position.coords.latitude}, // starting position [lng, lat]
-                zoom: 15 // starting zoom
-                });
+                L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+                attribution: 'Map data &copy; OpenStreetMap contributors, Imagery © Mapbox',
+                maxZoom: 18,
+                id: 'mapbox/streets-v11',
+                tileSize: 512,
+                zoomOffset: -1,
+                accessToken: 'pk.eyJ1IjoiZmFoaW1hbHRpbm9yZHUiLCJhIjoiY2tycnl0NGljMzN6ODJ2cGVzNzg5eWZ2bSJ9.iEZejnMqCLmdIcCkOJcvxg'
+                }).addTo(mymap);
                 
             }
             
