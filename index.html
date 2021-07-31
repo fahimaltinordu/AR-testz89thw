@@ -10,9 +10,7 @@
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
 
    <link rel="stylesheet" href="leaflet.css"/>
-   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-   crossorigin=""></script>
+   <script src="leaflet.js"></script>
     
     <style>
         * {
@@ -212,7 +210,7 @@
 
                 let location = position.coords.latitude + ',' + position.coords.longitude;
                 
-                var mymap = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 15);
+                var mymap = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 16);
                 var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap);
 
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
