@@ -19,7 +19,7 @@
         #currentlocation {
           position: fixed;
           z-index: 10000;
-          background-color: rgb(0, 0, 0);
+          background-color: rgb(34, 123, 201);
           padding: 10px;
           bottom: 0;
           left: 0;
@@ -34,7 +34,7 @@
         #map-container {
           position: fixed;
           z-index: 10000;
-          background-color: rgb(77, 77, 77);
+          background-color: rgb(34, 123, 201);
           bottom: 20px;
           left: 0;
           width:100%;
@@ -43,6 +43,7 @@
           border-top-left-radius: 50%;
           border-top-right-radius: 50%;
           overflow: hidden;
+          box-shadow: 0 -10px 5px -3px rgba(0, 0, 0, 0.8);
         }
         #mapid {
             height:100%;
@@ -196,7 +197,7 @@
     </script>
 
     <script>
-        //get current location (onload)
+        //get/watch location (onload)
         window.onload = () => {
             if( navigator.geolocation ) {
                     const watchId = navigator.geolocation.watchPosition( success, fail );
@@ -206,10 +207,11 @@
             }
 
             function success (position) {
-                document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)}; longitude: ${position.coords.longitude.toFixed(6)}`;
+                document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)} || longitude: ${position.coords.longitude.toFixed(6)}`;
 
                 let location = position.coords.latitude + ',' + position.coords.longitude;
                 
+                //leaflet.js part
                 var mymap = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 16);
                 var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap);
 
@@ -246,6 +248,3 @@
       </script>
 
 </body>
-
-<!-- look-controls-enabled="false" 
-            arjs-look-controls="smoothingFactor: 0.1" -->
