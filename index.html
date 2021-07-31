@@ -213,12 +213,16 @@
                 let location = position.coords.latitude + ',' + position.coords.longitude;
                 
                 //leaflet.js part
-                var mymap = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 16);
-                var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap);
+                let radius = position.coords.accuracy;
+                let mymap = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 16);
+                let marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap);
+                let circle = L.circle([position.coords.latitude, position.coords.longitude], { 
+                    color: 'rgb(34, 123, 201)', 
+                    radius: 50.0 }).addTo(mymap);
 
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 attribution: '© OpenStreetMap | © Mapbox',
-                maxZoom: 18,
+                maxZoom: 17,
                 id: 'mapbox/streets-v11',
                 tileSize: 512,
                 zoomOffset: -1,
