@@ -34,7 +34,7 @@
           z-index: 10000;
           background-color: #fff;
           padding: 10px;
-          top: 20px;
+          top: 0;
           left: 0;
           width:100%;
           color:red;
@@ -78,7 +78,7 @@
 
         
         <a-box 
-            material="color: green;" 
+            material="color: orange;" 
             scale="1 1 1" 
             gps-entity-place="latitude: 41.044862; longitude: 28.952108;" 
         >
@@ -100,6 +100,14 @@
             scale="1 1 1" 
             gps-entity-place="latitude: 41.045145; longitude: 28.951800;"
         ></a-image>
+        <a-text
+            color="red"
+            id="text1"
+            value=""
+            look-at="[gps-camera]"
+            scale="1 1 1"
+            gps-entity-place="latitude: 41.045145; longitude: 28.951800;"
+        ></a-text>
 
         <!--ev-->
         <a-image 
@@ -108,6 +116,14 @@
             scale="1 1 1" 
             gps-entity-place="latitude: 41.045116; longitude: 28.951977;"
         ></a-image>
+        <a-text
+            color="red"
+            id="text2"
+            value=""
+            look-at="[gps-camera]"
+            scale="1 1 1"
+            gps-entity-place="latitude: 41.045116; longitude: 28.951977;"
+        ></a-text>
 
         <!--bim-->
         <a-image 
@@ -116,6 +132,14 @@
             scale="1 1 1" 
             gps-entity-place="latitude: 41.044728; longitude: 28.951982;"
         ></a-image>
+        <a-text
+            color="red"
+            id="text3"
+            value=""
+            look-at="[gps-camera]"
+            scale="1 1 1"
+            gps-entity-place="latitude: 41.044728; longitude: 28.951982;"
+        ></a-text>
 
         <!--çelebi-->
         <a-image 
@@ -192,12 +216,24 @@
         window.addEventListener('load', () => {
           const distanceMsg = document.querySelector('[gps-entity-place]').getAttribute('distanceMsg');
           const text = document.getElementById('text');
+          const text1 = document.getElementById('text1');
+          const text2 = document.getElementById('text2');
+          const text3 = document.getElementById('text3');
           const dstnc = document.getElementById('distance');
 
           text.addEventListener('gps-entity-place-update-position', (event) => {
             // document.getElementById('debug').textContent = `${event.detail.distance.toFixed(2)} meters far from you`;
             text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
             dstnc.innerHTML = `~ ${text.getAttribute('distanceMsg')} left`;
+          });
+          text1.addEventListener('gps-entity-place-update-position', (event) => {
+            text1.setAttribute('value', text1.getAttribute('distanceMsg') + ' left');
+          });
+          text2.addEventListener('gps-entity-place-update-position', (event) => {
+            text2.setAttribute('value', text2.getAttribute('distanceMsg') + ' left');
+          });
+          text3.addEventListener('gps-entity-place-update-position', (event) => {
+            text3.setAttribute('value', text3.getAttribute('distanceMsg') + ' left');
           });
 
         });
