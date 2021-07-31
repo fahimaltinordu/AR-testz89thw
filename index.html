@@ -67,12 +67,13 @@
 		arjs='sourceType: webcam; debugUIEnabled: false;'>
 
         
-        <a-box 
-            material="color: orange;" 
+        <a-image 
+            src="assets/place.png"  
+            look-at="[gps-camera]"
             scale="1 1 1" 
             gps-entity-place="latitude: 41.044862; longitude: 28.952108;" 
         >
-        </a-box>
+        </a-image>
 
         <a-text
             color="red"
