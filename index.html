@@ -229,18 +229,14 @@
                 function onLocationFound(e) {
                     var lat = (e.latlng.lat);
                     var lng = (e.latlng.lng);
-                    var newLatLng = new L.LatLng(lat, lng);
+                    var newLatLng = new L.LatLng(mymap.getCenter().lat, mymap.getCenter().lng);
                     marker.setLatLng(newLatLng); 
                     circle.setLatLng(newLatLng); 
-                    mymap.getCenter();
+                    // mymap.getCenter();
                 }
                 mymap.on('locationfound', onLocationFound);
                 
-                // mymap.on('move', function(e) {
-                //     marker.setLatLng(mymap.getCenter());
-                //     circle.setLatLng(mymap.getCenter());
                 //     mymap._renderer._update();
-                // });
 
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 attribution: '© OpenStreetMap | © Mapbox',
