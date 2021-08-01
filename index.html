@@ -220,6 +220,8 @@
                     color: 'rgb(34, 123, 201)', 
                     radius: 50.0 }).addTo(mymap);
 
+                mymap.locate({setView: true, watch: true});
+
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 attribution: '© OpenStreetMap | © Mapbox',
                 maxZoom: 17,
