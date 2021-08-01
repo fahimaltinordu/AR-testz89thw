@@ -232,14 +232,15 @@
                     var newLatLng = new L.LatLng(lat, lng);
                     marker.setLatLng(newLatLng); 
                     circle.setLatLng(newLatLng); 
-                    
+                    mymap.getCenter();
                 }
                 mymap.on('locationfound', onLocationFound);
                 
-                mymap.on('move', function(e) {
-                    marker.setLatLng(mymap.getCenter());
-                    mymap._renderer._update();
-                });
+                // mymap.on('move', function(e) {
+                //     marker.setLatLng(mymap.getCenter());
+                //     circle.setLatLng(mymap.getCenter());
+                //     mymap._renderer._update();
+                // });
 
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 attribution: '© OpenStreetMap | © Mapbox',
