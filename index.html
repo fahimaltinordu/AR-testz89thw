@@ -219,7 +219,7 @@
                 var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap)
                 .bindPopup('you are within blue circle')
                 .openPopup();
-                let circle = L.circle([position.coords.latitude, position.coords.longitude], { 
+                var circle = L.circle([position.coords.latitude, position.coords.longitude], { 
                     color: 'rgb(34, 123, 201)', 
                     radius: 50.0 }).addTo(mymap);
                 
@@ -236,7 +236,10 @@
                 }
                 mymap.on('locationfound', onLocationFound);
                 
-                mymap.panTo(marker.getLatLng()); // pan the map to follow the marker
+                mymap.on('move', function(e) {
+                    marker.setLatLng(mymap.getCenter());
+                    mymap._renderer._update();
+                });
 
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 attribution: '© OpenStreetMap | © Mapbox',
