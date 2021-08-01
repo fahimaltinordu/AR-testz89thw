@@ -216,7 +216,7 @@
                 //leaflet.js part
                 let radius = position.coords.accuracy;
                 let mymap = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 16);
-                let marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap)
+                var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap)
                 .bindPopup('you are within blue circle')
                 .openPopup();
                 let circle = L.circle([position.coords.latitude, position.coords.longitude], { 
@@ -228,10 +228,15 @@
 
 
                 function onLocationFound(e) {
-                    var radius = e.accuracy / 2;
+                    var lat = (e.latlng.lat);
+                    var lng = (e.latlng.lng);
+                    var newLatLng = new L.LatLng(lat, lng);
+                    marker.setLatLng(newLatLng); 
 
-                    L.marker((e.latlng)).addTo(mymap).bindPopup("You are within " + radius + " meters from this point").openPopup(); 
-                    L.circle(e.latlng, radius).addTo(mymap);
+
+                    // var radius = e.accuracy / 2;
+                    // L.marker((e.latlng)).addTo(mymap).bindPopup("You are within " + radius + " meters from this point").openPopup(); 
+                    // L.circle(e.latlng, radius).addTo(mymap);
                 }
                 mymap.on('locationfound', onLocationFound);
 
