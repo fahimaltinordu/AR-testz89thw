@@ -225,21 +225,18 @@
                 
                 mymap.locate({setView: true, watch: true});
                 
-
-
+                
                 function onLocationFound(e) {
                     var lat = (e.latlng.lat);
                     var lng = (e.latlng.lng);
                     var newLatLng = new L.LatLng(lat, lng);
                     marker.setLatLng(newLatLng); 
-
-
-                    // var radius = e.accuracy / 2;
-                    // L.marker((e.latlng)).addTo(mymap).bindPopup("You are within " + radius + " meters from this point").openPopup(); 
-                    // L.circle(e.latlng, radius).addTo(mymap);
+                    circle.setLatLng(newLatLng); 
+                    
                 }
                 mymap.on('locationfound', onLocationFound);
-
+                
+                mymap.panTo(marker.getLatLng()); // pan the map to follow the marker
 
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 attribution: '© OpenStreetMap | © Mapbox',
