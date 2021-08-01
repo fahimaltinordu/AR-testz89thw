@@ -216,16 +216,26 @@
                 //leaflet.js part
                 let radius = position.coords.accuracy;
                 let mymap = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 16);
-                let marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap);
+                let marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap)
+                .bindPopup('you are within blue circle')
+                .openPopup();
                 let circle = L.circle([position.coords.latitude, position.coords.longitude], { 
                     color: 'rgb(34, 123, 201)', 
                     radius: 50.0 }).addTo(mymap);
                 
                 mymap.locate({setView: true, watch: true});
                 
-                var lat = (position.coords.latitude);
-                var lng = (position.coords.longitude);
-                marker.setLatLng([lat, lng]).update();  // Updates your defined marker position    
+
+
+                function onLocationFound(e) {
+                    var radius = e.accuracy / 2;
+
+                    L.marker((e.latlng), {icon: IsyUserIcon}).addTo(map).bindPopup("You are within " + radius + " meters from this point").openPopup(); 
+                    L.circle(e.latlng, radius).addTo(map);
+                }
+
+
+
 
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 attribution: '© OpenStreetMap | © Mapbox',
