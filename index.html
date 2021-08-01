@@ -208,6 +208,7 @@
             }
 
             function success (position) {
+                //lat-long info for bottom
                 document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)} || longitude: ${position.coords.longitude.toFixed(6)}`;
 
                 let location = position.coords.latitude + ',' + position.coords.longitude;
@@ -219,12 +220,17 @@
                 let circle = L.circle([position.coords.latitude, position.coords.longitude], { 
                     color: 'rgb(34, 123, 201)', 
                     radius: 50.0 }).addTo(mymap);
-
+                
                 mymap.locate({setView: true, watch: true});
+                
+                var lat = (position.coords.latitude);
+                var lng = (position.coords.longitude);
+                marker.setLatLng([lat, lng]).update();  // Updates your defined marker position    
 
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 attribution: '© OpenStreetMap | © Mapbox',
                 maxZoom: 17,
+                minZoom: 1,
                 id: 'mapbox/streets-v11',
                 tileSize: 512,
                 zoomOffset: -1,
