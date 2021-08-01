@@ -232,11 +232,11 @@
                     var newLatLng = new L.LatLng(lat, lng);
                     marker.setLatLng(newLatLng); 
                     circle.setLatLng(newLatLng); 
-                    mymap.getCenter();
+                    // mymap.getCenter(); //kaldırılacak
+                    mymap._renderer._update();
                 }
                 mymap.on('locationfound', onLocationFound);
                 
-                //     mymap._renderer._update();
 
                 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 attribution: '© OpenStreetMap | © Mapbox',
