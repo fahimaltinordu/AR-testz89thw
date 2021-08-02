@@ -11,6 +11,7 @@
 
    <link rel="stylesheet" href="leaflet.css"/>
    <script src="leaflet.js"></script>
+  
     
     <style>
         * {
@@ -19,7 +20,7 @@
         #currentlocation {
           position: fixed;
           z-index: 10000;
-          background-color: rgb(34, 123, 201);
+          background-color: rgb(52, 51, 50);
           padding: 10px;
           bottom: 0;
           left: 0;
@@ -34,7 +35,7 @@
         #map-container {
           position: fixed;
           z-index: 10000;
-          background-color: rgb(34, 123, 201);
+          background-color: rgb(52, 51, 50);
           bottom: 20px;
           left: 0;
           width:100%;
@@ -47,6 +48,7 @@
         }
         #mapid {
             height:100%;
+            position: absolute; top:0; bottom:0; right:0; left:0; 
         }
 
     </style>
@@ -56,6 +58,7 @@
 <body style='margin: 0; overflow: hidden;'>
 
     <div id="currentlocation"></div>
+
     <div id="map-container">
         <div id="mapid"></div>
     </div>
@@ -197,80 +200,6 @@
         });
     </script>
 
-    <script>
-        //get/watch location (onload)
-        window.onload = () => {
-            if( navigator.geolocation ) {
-                    const watchId = navigator.geolocation.watchPosition( success, fail );
-            }
-            else {
-                alert("Sorry, your browser does not support geolocation services.");
-            }
-
-            function success (position) {
-                //lat-long info for bottom
-                document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)} || longitude: ${position.coords.longitude.toFixed(6)}`;
-
-                let location = position.coords.latitude + ',' + position.coords.longitude;
-                
-                //leaflet.js part
-                let radius = position.coords.accuracy;
-                var mymap = L.map('mapid', {
-                    center: [position.coords.latitude, position.coords.longitude],
-                    zoom: 16
-                });
-                // let mymap = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 16);
-                var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap)
-                .bindPopup('you are around here')
-                .openPopup();
-                var circle = L.circle([position.coords.latitude, position.coords.longitude], { 
-                    color: 'rgb(34, 123, 201)', 
-                    radius: 50.0 }).addTo(mymap);
-                
-                mymap.locate({setView: true, watch: true});
-                
-                
-                function onLocationFound(e) {
-                    var lat = (e.latlng.lat);
-                    var lng = (e.latlng.lng);
-                    var newLatLng = new L.LatLng(lat, lng);
-                    marker.setLatLng(newLatLng); 
-                    circle.setLatLng(newLatLng); 
-                }
-                mymap.on('locationfound', onLocationFound);
-                
-
-                L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-                attribution: '© OpenStreetMap | © Mapbox',
-                maxZoom: 17,
-                minZoom: 1,
-                id: 'mapbox/streets-v11',
-                tileSize: 512,
-                zoomOffset: -1,
-                accessToken: 'pk.eyJ1IjoiZmFoaW1hbHRpbm9yZHUiLCJhIjoiY2tycnl0NGljMzN6ODJ2cGVzNzg5eWZ2bSJ9.iEZejnMqCLmdIcCkOJcvxg'
-                }).addTo(mymap);
-                
-            }
-            
-            function fail (error) {
-                switch(error.code) {
-                    case error.PERMISSION_DENIED:
-                    document.getElementById('currentlocation').innerHTML=`User denied Geolocation`;
-                        break;
-                    case error.POSITION_UNAVAILABLE:
-                    document.getElementById('currentlocation').innerHTML=`Unable to get your location`;
-                        break;
-                    case error.TIMEOUT:
-                    document.getElementById('currentlocation').innerHTML=`Runtime error`;
-                        break;
-                    case error.UNKNOWN_ERROR:
-                    document.getElementById('currentlocation').innerHTML=`Unknown error`;
-                        break;
-                }
-            }
-
-        }
-
-      </script>
+    <script src="app.js"></script>
 
 </body>
