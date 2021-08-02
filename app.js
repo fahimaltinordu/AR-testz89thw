@@ -25,7 +25,7 @@ window.onload = () => {
         .bindPopup('you are around here')
         .openPopup();
         var circle = L.circle([position.coords.latitude, position.coords.longitude], { 
-            color: '#ffffff', 
+            color: '#3388ff', 
             radius: 50.0 }).addTo(mymap);
         
         
