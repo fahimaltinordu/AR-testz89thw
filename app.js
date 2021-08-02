@@ -44,7 +44,7 @@ window.onload = () => {
         const attribution = '© OpenStreetMap | © Mapbox';
         const tiles = L.tileLayer(titleURL, {
             attribution, 
-            id: 'mapbox/dark-v10', 
+            id: 'mapbox/navigation-night-v1', 
             zoomOffset: -1, 
             maxZoom: 17, 
             minZoom: 1, 
