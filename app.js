@@ -49,9 +49,7 @@ window.onload = () => {
             maxZoom: 17, 
             minZoom: 1, 
             tileSize: 512, 
-            accessToken: 'pk.eyJ1IjoiZmFoaW1hbHRpbm9yZHUiLCJhIjoiY2tycnl0NGljMzN6ODJ2cGVzNzg5eWZ2bSJ9.iEZejnMqCLmdIcCkOJcvxg',
-            pitch: 60, // pitch in degrees
-            bearing: 60, // bearing in degrees
+            accessToken: 'pk.eyJ1IjoiZmFoaW1hbHRpbm9yZHUiLCJhIjoiY2tycnl0NGljMzN6ODJ2cGVzNzg5eWZ2bSJ9.iEZejnMqCLmdIcCkOJcvxg'
         });
         tiles.addTo(mymap);
         
