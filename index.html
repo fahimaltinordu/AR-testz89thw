@@ -215,11 +215,15 @@
                 
                 //leaflet.js part
                 let radius = position.coords.accuracy;
-                let mymap = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 16);
+                var mymap = L.map('mapid', {
+                    center: [position.coords.latitude, position.coords.longitude],
+                    zoom: 16
+                });
+                // let mymap = L.map('mapid').setView([position.coords.latitude, position.coords.longitude], 16);
                 var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap)
-                .bindPopup('you are within blue circle')
+                .bindPopup('you are around here')
                 .openPopup();
-                var circle = L.circle(mymap.getCenter(), [position.coords.latitude, position.coords.longitude], { 
+                var circle = L.circle([position.coords.latitude, position.coords.longitude], { 
                     color: 'rgb(34, 123, 201)', 
                     radius: 50.0 }).addTo(mymap);
                 
@@ -232,8 +236,6 @@
                     var newLatLng = new L.LatLng(lat, lng);
                     marker.setLatLng(newLatLng); 
                     circle.setLatLng(newLatLng); 
-                    // mymap.getCenter(); //kaldırılacak
-                    mymap._renderer._update();
                 }
                 mymap.on('locationfound', onLocationFound);
                 
