@@ -149,6 +149,7 @@
     </a-scene>
 
     <script>
+        //AR cam open-close
         const openArScreen = document.getElementById("ar-area");
         const openArBtn = document.getElementById("ar-btn");
 
@@ -157,7 +158,7 @@
         });
         
 
-
+        //distance message on AR objects
         window.addEventListener('click', () => {
           const distanceMsg = document.querySelector('[gps-entity-place]').getAttribute('distanceMsg');
           const text = document.getElementById('text');
