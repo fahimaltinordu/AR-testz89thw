@@ -1,0 +1,90 @@
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+html, body {
+    width: 100vw;
+}
+body {
+    margin: 0; 
+    overflow: hidden;
+}
+#currentlocation {
+  position: fixed;
+  z-index: 10000;
+  background-color: rgb(52, 51, 50);
+  padding: 10px;
+  bottom: 0;
+  left: 0;
+  width:100%;
+  height:20px;
+  color:rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+#map-container {
+  position: fixed;
+  z-index: 10000;
+  background-color: rgb(52, 51, 50);
+  bottom: 20px;
+  left: 0;
+  width:100%;
+  height:30%;
+  display: block;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 -10px 5px -3px rgba(0, 0, 0, 0.8);
+}
+#mapid {
+    height:100%;
+    position: absolute; top:0; bottom:0; right:0; left:0; 
+}
+#ar-area {
+    /* position: fixed;
+    z-index: 1000; */
+    background-color: rgb(52, 51, 50);
+    /* top: 0;
+    left: 0; */
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#ar-area #absolute {
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    text-align: center;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#ar-area #absolute img {
+    width:150px;
+    height:150px;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+#ar-area #absolute #ar-btn {
+    width:150px;
+    height:50px;
+    margin-top:10px;
+    margin-bottom:10px;
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.8);
+    font-size:20px;
+    font-weight: bold;
+    color:#0179da;
+    background-color: #e4e1da;
+    outline:none;
+    border:none;
+}
