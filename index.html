@@ -4,11 +4,7 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>huntAR demo</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/3.3.3/aframe/build/aframe-ar-nft.js"></script>
-    <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <title>ILCity</title>
 
    <link rel="stylesheet" href="leaflet.css"/>
    <link rel="stylesheet" href="style.css">
@@ -18,169 +14,25 @@
 
 
 <body>
-
+    <header>
+        <nav>
+            <img src="assets/ilcity.png" alt="">
+            <h3>ILCity</h3>
+        </nav>
+        <div id="menu">
+            menu
+        </div>
+        
+    </header>
     <div id="currentlocation"></div>
 
     <div id="map-container">
         <div id="mapid"></div>
     </div>
 
-    <div id="ar-area">
-        <div id="absolute">
-            <h2>ILCity</h2>
-            <p>Collect ILCoin from ILCity</p>
-            <img src="assets/ilcity.png" alt="">
-            <button id="ar-btn">Open AR</button>
-        </div>
+    <div id="ar-start-area">
+        <a href="ar.html" id="ar-start">AR</a>
     </div>
-
-    <a-scene
-        id="ArStart"
-        loading-screen="enabled: false;"
-        vr-mode-ui="enabled: false"
-		embedded
-		arjs='sourceType: webcam; debugUIEnabled: false;'>
-
-        
-        <a-image 
-            src="assets/place.png"  
-            look-at="[gps-camera]"
-            scale="1 1 1" 
-            gps-entity-place="latitude: 41.044862; longitude: 28.952108;" 
-        >
-        </a-image>
-
-        <a-text
-            color="red"
-            id="text"
-            value=""
-            look-at="[gps-camera]"
-            scale="1 1 1"
-            gps-entity-place="latitude: 41.044862; longitude: 28.952108;"
-        ></a-text>
-        
-        <!--apartman-->
-        <a-image 
-            src="assets/place.png" 
-            look-at="[gps-camera]"
-            scale="1 1 1" 
-            gps-entity-place="latitude: 41.045141; longitude: 28.951875;"
-        ></a-image>
-        <a-text
-            color="red"
-            id="text1"
-            value=""
-            look-at="[gps-camera]"
-            scale="1 1 1"
-            gps-entity-place="latitude: 41.045141; longitude: 28.951875;"
-        ></a-text>
-
-        <!--ev-->
-        <a-image 
-            src="assets/place.png" 
-            look-at="[gps-camera]"
-            scale="1 1 1" 
-            gps-entity-place="latitude: 41.045116; longitude: 28.951977;"
-        ></a-image>
-        <a-text
-            color="red"
-            id="text2"
-            value=""
-            look-at="[gps-camera]"
-            scale="1 1 1"
-            gps-entity-place="latitude: 41.045116; longitude: 28.951977;"
-        ></a-text>
-
-        <!--bim-->
-        <a-image 
-            src="assets/place.png" 
-            look-at="[gps-camera]"
-            scale="1 1 1" 
-            gps-entity-place="latitude: 41.044728; longitude: 28.951982;"
-        ></a-image>
-        <a-text
-            color="red"
-            id="text3"
-            value=""
-            look-at="[gps-camera]"
-            scale="1 1 1"
-            gps-entity-place="latitude: 41.044728; longitude: 28.951982;"
-        ></a-text>
-
-        <!--çelebi-->
-        <a-image 
-            src="assets/place.png" 
-            look-at="[gps-camera]"
-            scale="1 1 1" 
-            gps-entity-place="latitude: 41.044623; longitude: 28.952519;"
-        ></a-image>
-
-        <!--gobek-->
-        <a-image 
-            src="assets/place.png" 
-            look-at="[gps-camera]"
-            scale="1 1 1" 
-            gps-entity-place="latitude: 41.045756; longitude: 28.953367;"
-        ></a-image>
-
-        <!--hasköy-->
-        <a-image 
-            src="assets/place.png" 
-            look-at="[gps-camera]"
-            scale="1 1 1" 
-            gps-entity-place="latitude: 41.042956; longitude: 28.948382;"
-        ></a-image>
-        
-        <!--hasköy2-->
-        <a-image 
-            src="assets/place.png" 
-            look-at="[gps-camera]"
-            scale="1 1 1" 
-            gps-entity-place="latitude: 41.043053; longitude: 28.948618;"
-        ></a-image>
-
-        <a-camera
-            gps-camera 
-            maxDistance="20" 
-            gpsMinDistance= "1" 
-            rotation-reader               
-        ></a-camera>
-
-    </a-scene>
-
-    <script>
-        //AR cam open-close
-        const openArScreen = document.getElementById("ar-area");
-        const openArBtn = document.getElementById("ar-btn");
-
-        openArBtn.addEventListener ('click', () => {
-            openArScreen.style.display = 'none';
-        });
-        
-
-        //distance message on AR objects
-        window.addEventListener('click', () => {
-          const distanceMsg = document.querySelector('[gps-entity-place]').getAttribute('distanceMsg');
-          const text = document.getElementById('text');
-          const text1 = document.getElementById('text1');
-          const text2 = document.getElementById('text2');
-          const text3 = document.getElementById('text3');
-
-          text.addEventListener('gps-entity-place-update-position', (event) => {
-            text.setAttribute('value', text.getAttribute('distanceMsg') + ' left');
-          });
-          text1.addEventListener('gps-entity-place-update-position', (event) => {
-            text1.setAttribute('value', text1.getAttribute('distanceMsg') + ' left');
-          });
-          text2.addEventListener('gps-entity-place-update-position', (event) => {
-            text2.setAttribute('value', text2.getAttribute('distanceMsg') + ' left');
-          });
-          text3.addEventListener('gps-entity-place-update-position', (event) => {
-            text3.setAttribute('value', text3.getAttribute('distanceMsg') + ' left');
-          });
-
-        });
-    </script>
 
     <script src="app.js"></script>
 

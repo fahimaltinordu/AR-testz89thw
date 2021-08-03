@@ -1,3 +1,10 @@
+// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+let vh = window.innerHeight * 0.01;
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+
+
 //get&watch location (onload)
 window.onload = () => {
     if( navigator.geolocation ) {
@@ -11,20 +18,20 @@ window.onload = () => {
         //lat-long info for bottom
         document.getElementById('currentlocation').innerHTML=`latitude: ${position.coords.latitude.toFixed(6)} || longitude: ${position.coords.longitude.toFixed(6)}`;
         
-        
+
+          
         //leaflet.js map tracking
         var mymap = L.map('mapid', {
             center: [position.coords.latitude, position.coords.longitude],
             maxZoom: 18,
-            minZoom: 1,
-            zoom: 18
+            minZoom: 18,
+            zoom: 18,
+            zoomControl: false
         });
         mymap.locate({setView: true, watch: true});
 
 
-        var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap)
-        .bindPopup('you are around here')
-        .openPopup();
+        var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(mymap);
 
         var circle = L.circle([position.coords.latitude, position.coords.longitude], { 
             color: '#3388ff', 
@@ -40,7 +47,7 @@ window.onload = () => {
         }
         mymap.on('locationfound', onLocationFound);
 
-        
+        //MAPBOX TILE
         // const titleURL = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}';
         // const attribution = '© OpenStreetMap | © Mapbox';
         // const tiles = L.tileLayer(titleURL, {
@@ -54,6 +61,7 @@ window.onload = () => {
         // });
         // tiles.addTo(mymap);
 
+        //OPENSTREETMAP TILE
         const titleURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
         const attribution = '© OpenStreetMap';
         const tiles = L.tileLayer(titleURL, {
