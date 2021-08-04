@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Map - Drag to pitch and rotate</title>
+  <style type="text/css">
+    html,body{margin:0px;height:100%;width:100%}
+    .container{width:100%;height:100%}
+    body {
+        background-color: dodgerblue; 
+        overflow: hidden;
+        position: relative;
+        z-index: 5;
+    }
+
+  </style>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maptalks/dist/maptalks.css">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/maptalks/dist/maptalks.min.js"></script>
+  <body>
+      
+    <div id="map" class="container"></div>
+
+    <script>
+      
+
+
+      //get&watch location (onload)
+    window.onload = () => {
+        if( navigator.geolocation ) {
+                const watchId = navigator.geolocation.watchPosition( success, fail );
+        }
+        else {
+            alert("Sorry, your browser does not support geolocation services.");
+        }
+
+        function success (position) {
+            
+            //maptalks.js map tracking (long-lat)
+            
+            var map = new maptalks.Map('map', {
+                    center: [position.coords.longitude, position.coords.latitude],
+                    zoom: 18,
+                    maxZoom:19,
+                    minZoom:15,
+                    dragPitch : true,
+                    dragRotate : true,
+                    dragRotatePitch : true,
+                    touchRotate: true,
+                    touchPitch: true,
+                    baseLayer: new maptalks.TileLayer('base', {
+                    urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    subdomains: ['a','b','c'],
+                    attribution: '&copy; <a href="http://osm.org">OpenStreetMap</a>',
+                }),
+                layers: [
+                new maptalks.VectorLayer('v')
+                ]
+            });
+
+            map.setPitch(59);
+            map.setBearing(0);
+
+ 
+        }
+        
+        function fail (error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                document.getElementById('currentlocation').innerHTML=`User denied Geolocation`;
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                document.getElementById('currentlocation').innerHTML=`Unable to get your location`;
+                    break;
+                case error.TIMEOUT:
+                document.getElementById('currentlocation').innerHTML=`Runtime error`;
+                    break;
+                case error.UNKNOWN_ERROR:
+                document.getElementById('currentlocation').innerHTML=`Unknown error`;
+                    break;
+            }
+        }
+
+    }
+
+    </script>
+  </body>
+</html>

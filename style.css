@@ -132,6 +132,43 @@ body {
     transform:scale(0.88);
 }
 
+#wrapper #other-map {
+    position:absolute;
+    bottom:12%;
+    left:20px;
+    background-color: rgb(52, 51, 50);
+    height: 10vh;
+    width:10vh;
+    border-radius:50%;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#wrapper #other-map #otherMAp{
+    cursor:pointer;
+    position:absolute;
+    bottom:0;
+    right:0;
+    background-color: transparent;
+    height: inherit;
+    width:inherit;
+    border-radius:50%;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline:0;
+    border:none;
+    color:white;
+    font-size:1.3rem;
+    font-weight: 700;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+    transition:transform 0.3s ease;
+}
+#wrapper #other-map #otherMAp:active {
+    transform:scale(0.88);
+}
 
 @media screen and (max-width: 425px) {
     #wrapper #currentlocation {
