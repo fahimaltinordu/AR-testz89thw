@@ -96,7 +96,7 @@ body {
 }
 #wrapper #ar-start-area {
     position:absolute;
-    bottom:10%;
+    bottom:12%;
     right:20px;
     background-color: rgb(52, 51, 50);
     height: 10vh;
@@ -133,7 +133,7 @@ body {
 }
 
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 425px) {
     #wrapper #currentlocation {
         font-size: 0.6rem;
       }
