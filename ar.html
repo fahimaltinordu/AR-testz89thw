@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8" />
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>ILCity</title>
+<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/3.3.3/aframe/build/aframe-ar-nft.js"></script>
+<script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+<script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+
+<script>
+    AFRAME.registerComponent('clicker', {
+        init: function() {
+            this.el.addEventListener('click', e => {
+                alert('clicked');
+            });
+        }
+    });
+</script>
+
+</head>
+
+<body >
+    <!-- 
+        fuse:false => ENGELLER (clicks every 3 seconds itself, after first click, without doing anything)
+     -->
+    <a-scene
+        loading-screen="enabled: false;"
+        vr-mode-ui="enabled: false"
+		cursor='fuse: false; rayOrigin: mouse'
+        raycaster='near: 0.1; far: 25'
+        arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'
+        renderer='antialias: true; alpha: true' >
+        
+        <a-camera 
+            look-controls-enabled='false' 
+            near="0.1" far="25" fov="80" 
+            arjs-look-controls='smoothingFactor: 0.1' 
+            gps-camera='gpsMinDistance: 1; maxDistance: 25;'  
+            rotation-reader 
+            vertical-controls 
+            wasd-controls="acceleration: 1300"> 
+        </a-camera>
+
+
+        <!--karşı arazi-->
+        <a-image 
+            src="assets/place.png"  
+            look-at="[gps-camera]" 
+            scale="1 1 1" 
+            gps-entity-place="latitude: 41.045046; longitude: 28.951835;"
+            clicker
+            animation="property: rotation; dur: 3000; to: 0 360 0; loop: true; easing: linear;" 
+        >
+        </a-image>
+
+        <!--apartman-->
+        <a-image 
+            src="assets/place.png" 
+            look-at="[gps-camera]"
+            scale="1 1 1" 
+            gps-entity-place="latitude: 41.045141; longitude: 28.951875;"
+            clicker
+            animation="property: rotation; dur: 3000; to: 0 360 0; loop: true"
+        ></a-image>
+
+        <!--ev-->
+        <a-image 
+            src="assets/place.png" 
+            look-at="[gps-camera]"
+            scale="1 1 1" 
+            gps-entity-place="latitude: 41.045116; longitude: 28.951977;"
+            clicker
+            animation="property: rotation; dur: 3000; to: 0 360 0; loop: true"
+        ></a-image>
+        
+
+        <!--bim-->
+        <a-image 
+            src="assets/place.png" 
+            look-at="[gps-camera]"
+            scale="1 1 1" 
+            gps-entity-place="latitude: 41.044728; longitude: 28.951982;"
+            clicker
+            animation="property: rotation; dur: 3000; to: 0 360 0; loop: true"
+        ></a-image>
+
+        <!--çelebi-->
+        <a-image 
+            src="assets/place.png" 
+            look-at="[gps-camera]"
+            scale="1 1 1" 
+            gps-entity-place="latitude: 41.044623; longitude: 28.952519;"
+            clicker
+            animation="property: rotation; dur: 3000; to: 0 360 0; loop: true"
+        ></a-image>
+
+        <!--gobek-->
+        <a-image 
+            src="assets/place.png" 
+            look-at="[gps-camera]"
+            scale="1 1 1" 
+            gps-entity-place="latitude: 41.045756; longitude: 28.953367;"
+            clicker
+            animation="property: rotation; dur: 3000; to: 0 360 0; loop: true"
+        ></a-image>
+
+        <!--hasköy-->
+        <a-image 
+            src="assets/place.png" 
+            look-at="[gps-camera]"
+            scale="1 1 1" 
+            gps-entity-place="latitude: 41.042956; longitude: 28.948382;"
+            clicker
+            animation="property: rotation; dur: 3000; to: 0 360 0; loop: true"
+        ></a-image>
+        
+        <!--hasköy2-->
+        <a-image 
+            src="assets/place.png" 
+            look-at="[gps-camera]"
+            scale="1 1 1" 
+            gps-entity-place="latitude: 41.043053; longitude: 28.948618;"
+            clicker
+            animation="property: rotation; dur: 3000; to: 0 360 0; loop: true"
+        ></a-image>
+
+    </a-scene>
+
+
+   
+</body>
+
+</html>
+
