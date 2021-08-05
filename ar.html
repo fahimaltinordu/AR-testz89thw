@@ -32,13 +32,13 @@
         loading-screen="enabled: false;"
         vr-mode-ui="enabled: false"
 		cursor='fuse: false; rayOrigin: mouse'
-        raycaster='near: 0; far: 50000'
+        raycaster='near: 0.1; far: 25'
         arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'
         renderer='antialias: true; alpha: true' >
         
         <a-camera 
             look-controls-enabled='false' 
-            near="0.1" far="50000" fov="80" 
+            near="0.1" far="25" fov="80" 
             arjs-look-controls='smoothingFactor: 0.1' 
             gps-camera='gpsMinDistance: 1; maxDistance: 25;'  
             rotation-reader 
@@ -46,13 +46,13 @@
             wasd-controls="acceleration: 1300"> 
         </a-camera>
 
-        <!-- <a-camera-static></a-camera-static> -->
 
+        <!--karşı arazi-->
         <a-image 
             src="assets/place.png"  
-            look-at="[gps-camera]"
+            look-at="[gps-camera]" 
             scale="1 1 1" 
-            gps-entity-place="latitude: 41.044862; longitude: 28.952108;"
+            gps-entity-place="latitude: 41.045046; longitude: 28.951835;"
             clicker
             animation="property: rotation; dur: 3000; to: 0 360 0; loop: true; easing: linear;" 
         >
