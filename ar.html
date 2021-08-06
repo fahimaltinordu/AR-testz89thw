@@ -13,13 +13,16 @@
 <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
 
 <script>
+    
     AFRAME.registerComponent('clicker', {
         init: function() {
             this.el.addEventListener('click', e => {
-                alert('clicked');
+                alert("clicked");
+                // console.log(key1.privatekey);
             });
         }
     });
+
 </script>
 
 </head>
@@ -32,13 +35,13 @@
         loading-screen="enabled: false;"
         vr-mode-ui="enabled: false"
 		cursor='fuse: false; rayOrigin: mouse'
-        raycaster='near: 0.1; far: 25'
+        raycaster='near: 0.1; far: 5000'
         arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'
         renderer='antialias: true; alpha: true' >
         
         <a-camera 
             look-controls-enabled='false' 
-            near="0.1" far="25" fov="80" 
+            near="0.1" far="5000" fov="80" 
             arjs-look-controls='smoothingFactor: 0.1' 
             gps-camera='gpsMinDistance: 1; maxDistance: 25;'  
             rotation-reader 
@@ -54,7 +57,6 @@
             scale="1 1 1" 
             gps-entity-place="latitude: 41.045046; longitude: 28.951835;"
             clicker
-            animation="property: rotation; dur: 3000; to: 0 360 0; loop: true; easing: linear;" 
         >
         </a-image>
 
@@ -65,19 +67,17 @@
             scale="1 1 1" 
             gps-entity-place="latitude: 41.045141; longitude: 28.951875;"
             clicker
-            animation="property: rotation; dur: 3000; to: 0 360 0; loop: true"
         ></a-image>
 
         <!--ev-->
-        <a-image 
+        <a-image
+            id="image1" 
             src="assets/place.png" 
             look-at="[gps-camera]"
             scale="1 1 1" 
             gps-entity-place="latitude: 41.045116; longitude: 28.951977;"
             clicker
-            animation="property: rotation; dur: 3000; to: 0 360 0; loop: true"
         ></a-image>
-        
 
         <!--bim-->
         <a-image 
@@ -131,8 +131,11 @@
 
     </a-scene>
 
-
-   
+    <script>
+        //   var key1 = document.querySelector('#image1');
+        //   key1.setAttribute('privatekey', 'K1sacsc4p495jksdscdcdcdcd');
+    </script>
+    
 </body>
 
 </html>
